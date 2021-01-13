@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1 class="display-4 text-center my-4">Pet Adoption Agency</h1>
+{% for pet in pets %}
+<div class="row justify-content-center text-center">
+    <div class="col-6 my-4">
+        <img class="img-fluid" src="{{pet.photo_url}}" alt="pet photo">
+        <br>
+        <span class=""><a href="{{pet.id}}" class="" aria-current="true">{{pet.name}}</a> is 
+            <strong>{% if pet.available%}Available{% else %}Unavailable{% endif %}</strong></span>
+    </div>
+</div>
+{% endfor %}
+<div class="row justify-content-center text-center">
+    <div class="col-6 my-4">
+        <a href="/add" class="btn btn-primary">Add a Pet</a>
+    </div>
+</div>
+{% endblock %}

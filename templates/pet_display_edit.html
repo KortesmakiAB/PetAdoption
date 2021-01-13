@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-3 my-4">
+        <h1 class="display-4">{{pet.name}}</h1>
+        <h4 class="h4">Species: {{pet.species}}</h4>
+        {% if pet.age %}
+        <h5 class="h5">Age: {{pet.age}}</h5>
+        {% endif %}
+    </div>
+    <div class="col-3 my-4">
+        <img class="img-fluid" src="{{pet.photo_url}}" alt="photo of pet">
+    </div>
+</div>
+<div class="row justify-content-center text-center">
+    <div class="col-6 my-3">
+        {% if pet.notes %}
+        <p class="lead">{{pet.notes}}</p>
+            <hr class="my-4">
+        {% endif %} 
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-6 mb-4">
+        <form method="POST">
+            {{ form.hidden_tag() }}
+        
+            {% for field in form if field.widget.input_type != 'hidden' %}
+            <div class="form-group">
+                {{field.label}}
+                {{field(class_="form-control")}}
+                {% for err in field.errors %}
+                <small class="form-text text-danger">
+                {{err}}
+                </small>
+                {% endfor %}
+            </div>
+            {% endfor %}
+            <div class="my-4">
+                <a href="/" class="btn btn-danger">Go Back</a>
+                <button class="btn  btn-success">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock%}
